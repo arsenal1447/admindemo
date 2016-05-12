@@ -63,6 +63,67 @@
                 ],
             ]
         ) ?>
+        <!--
+        <ul class="sidebar-menu">
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-gears"></i> <span>权限控制</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="treeview">
+                        <a href="/admin">管理员</a>
+                        <ul class="treeview-menu">
+                            <li><a href="/user"><i class="fa fa-circle-o"></i> 后台用户</a></li>
+                            <li class="treeview">
+                                <a href="/admin/role">
+                                    <i class="fa fa-circle-o"></i> 权限 <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="/admin/route"><i class="fa fa-circle-o"></i> 路由</a></li>
+                                    <li><a href="/admin/permission"><i class="fa fa-circle-o"></i> 权限</a></li>
+                                    <li><a href="/admin/role"><i class="fa fa-circle-o"></i> 角色</a></li>
+                                    <li><a href="/admin/assignment"><i class="fa fa-circle-o"></i> 分配</a></li>
+                                    <li><a href="/admin/menu"><i class="fa fa-circle-o"></i> 菜单</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        -->
+   <?php
+use yii\bootstrap\Nav;
+use mdm\admin\components\MenuHelper;
+
+$callback = function($menu){
+    $data = json_decode($menu['data'], true);
+    $items = $menu['children'];
+    $return = [
+    'label' => $menu['name'],
+    'url' => [$menu['route']],
+    ];
+    //处理我们的配置
+    if ($data) {
+        //visible
+        isset($data['visible']) && $return['visible'] = $data['visible'];
+        //icon
+        isset($data['icon']) && $data['icon'] && $return['icon'] = $data['icon'];
+        //other attribute e.g. class...
+        $return['options'] = $data;
+    }
+    //没配置图标的显示默认图标
+    (!isset($return['icon']) || !$return['icon']) && $return['icon'] = 'fa fa-circle-o';
+    $items && $return['items'] = $items;
+    return $return;
+};
+        echo Nav::widget([
+            "encodeLabels" => false,
+            "options" => ["class" => "sidebar-menu"],
+            "items" => MenuHelper::getAssignedMenu(Yii::$app->user->id),
+        ]
+    );?>
 
     </section>
 
