@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50624
-Source Host           : localhost:3306
+Source Server Version : 50617
+Source Host           : 127.0.0.1:3306
 Source Database       : admindemo
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-05-12 18:04:09
+Date: 2016-05-12 22:00:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,6 +32,7 @@ CREATE TABLE `auth_assignment` (
 -- ----------------------------
 INSERT INTO `auth_assignment` VALUES ('乙级', '1', '1463045149');
 INSERT INTO `auth_assignment` VALUES ('甲级', '1', '1463043134');
+INSERT INTO `auth_assignment` VALUES ('英超', '1', '1463060611');
 INSERT INTO `auth_assignment` VALUES ('角色1', '1', '1463040979');
 
 -- ----------------------------
@@ -129,10 +130,8 @@ INSERT INTO `auth_item` VALUES ('/site/index', '2', null, null, null, '146303935
 INSERT INTO `auth_item` VALUES ('/site/login', '2', null, null, null, '1463039356', '1463039356');
 INSERT INTO `auth_item` VALUES ('/site/logout', '2', null, null, null, '1463039356', '1463039356');
 INSERT INTO `auth_item` VALUES ('/test/*', '2', null, null, null, '1463040085', '1463040085');
-INSERT INTO `auth_item` VALUES ('/test/create', '2', null, null, null, '1463042975', '1463042975');
 INSERT INTO `auth_item` VALUES ('/test/delete', '2', null, null, null, '1463040085', '1463040085');
 INSERT INTO `auth_item` VALUES ('/test/index', '2', null, null, null, '1463040084', '1463040084');
-INSERT INTO `auth_item` VALUES ('/test/update', '2', null, null, null, '1463042975', '1463042975');
 INSERT INTO `auth_item` VALUES ('/test/view', '2', null, null, null, '1463040085', '1463040085');
 INSERT INTO `auth_item` VALUES ('/user/*', '2', null, null, null, '1463040797', '1463040797');
 INSERT INTO `auth_item` VALUES ('/user/create', '2', null, null, null, '1463040797', '1463040797');
@@ -140,11 +139,13 @@ INSERT INTO `auth_item` VALUES ('/user/delete', '2', null, null, null, '14630407
 INSERT INTO `auth_item` VALUES ('/user/index', '2', null, null, null, '1463040797', '1463040797');
 INSERT INTO `auth_item` VALUES ('/user/update', '2', null, null, null, '1463040797', '1463040797');
 INSERT INTO `auth_item` VALUES ('/user/view', '2', null, null, null, '1463040797', '1463040797');
+INSERT INTO `auth_item` VALUES ('一点权限', '2', '一点权限', null, null, '1463060495', '1463060495');
 INSERT INTO `auth_item` VALUES ('乙级', '1', '乙级', null, null, '1463045104', '1463045104');
 INSERT INTO `auth_item` VALUES ('测试管理', '2', '测试管理', null, null, '1463044965', '1463044965');
 INSERT INTO `auth_item` VALUES ('用户管理', '2', '用户管理', null, null, '1463040838', '1463040838');
 INSERT INTO `auth_item` VALUES ('甲级', '1', '甲级', null, null, '1463043067', '1463043067');
 INSERT INTO `auth_item` VALUES ('给点权限', '2', '给点权限', null, null, '1463046735', '1463046735');
+INSERT INTO `auth_item` VALUES ('英超', '1', '英超', null, null, '1463060243', '1463060243');
 INSERT INTO `auth_item` VALUES ('角色1', '1', '角色1', null, null, '1463040922', '1463040922');
 
 -- ----------------------------
@@ -238,28 +239,31 @@ INSERT INTO `auth_item_child` VALUES ('给点权限', '/site/login');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/site/logout');
 INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/*');
-INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/create');
-INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/create');
 INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/delete');
 INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/index');
-INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/update');
-INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/update');
 INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/view');
+INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/*');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/*');
+INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/create');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/create');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/create');
+INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/delete');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/delete');
+INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/index');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/index');
+INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/update');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/update');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/update');
+INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/view');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/view');
+INSERT INTO `auth_item_child` VALUES ('英超', '一点权限');
 INSERT INTO `auth_item_child` VALUES ('乙级', '测试管理');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '测试管理');
 INSERT INTO `auth_item_child` VALUES ('乙级', '用户管理');
@@ -297,7 +301,7 @@ CREATE TABLE `menu` (
   PRIMARY KEY (`id`),
   KEY `parent` (`parent`),
   CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
@@ -310,6 +314,8 @@ INSERT INTO `menu` VALUES ('5', '系统设置', null, '/user/index', '1', null);
 INSERT INTO `menu` VALUES ('6', '菜单设置', null, '/admin/menu/index', '1', null);
 INSERT INTO `menu` VALUES ('7', '用户管理', '2', '/user/index', '2', null);
 INSERT INTO `menu` VALUES ('8', '测试菜单2', null, null, '1', null);
+INSERT INTO `menu` VALUES ('9', '一级菜单a', null, '/admin/menu/index', '1', null);
+INSERT INTO `menu` VALUES ('10', '二级菜单a', '9', '/admin/menu/create', '2', null);
 
 -- ----------------------------
 -- Table structure for `test`
