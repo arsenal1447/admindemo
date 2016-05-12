@@ -23,4 +23,5 @@ return [
 //             ],
 //         ],
     ],
+    'timeZone'=>'Asia/Chongqing',//设置时区
 ];
