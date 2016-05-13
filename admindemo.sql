@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : local
-Source Server Version : 50617
-Source Host           : 127.0.0.1:3306
+Source Server Version : 50624
+Source Host           : localhost:3306
 Source Database       : admindemo
 
 Target Server Type    : MYSQL
-Target Server Version : 50617
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-12 22:00:48
+Date: 2016-05-13 15:28:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,9 +31,13 @@ CREATE TABLE `auth_assignment` (
 -- Records of auth_assignment
 -- ----------------------------
 INSERT INTO `auth_assignment` VALUES ('乙级', '1', '1463045149');
+INSERT INTO `auth_assignment` VALUES ('分配管理者', '1', '1463110928');
+INSERT INTO `auth_assignment` VALUES ('小兵', '1', '1463105726');
+INSERT INTO `auth_assignment` VALUES ('权限管理者', '1', '1463109034');
 INSERT INTO `auth_assignment` VALUES ('甲级', '1', '1463043134');
-INSERT INTO `auth_assignment` VALUES ('英超', '1', '1463060611');
 INSERT INTO `auth_assignment` VALUES ('角色1', '1', '1463040979');
+INSERT INTO `auth_assignment` VALUES ('角色管理者', '1', '1463110016');
+INSERT INTO `auth_assignment` VALUES ('路由管理者', '1', '1463107308');
 
 -- ----------------------------
 -- Table structure for `auth_item`
@@ -56,6 +60,7 @@ CREATE TABLE `auth_item` (
 -- ----------------------------
 -- Records of auth_item
 -- ----------------------------
+INSERT INTO `auth_item` VALUES (' 权限管理1', '2', ' 权限管理', null, null, '1463105460', '1463105460');
 INSERT INTO `auth_item` VALUES ('/*', '2', null, null, null, '1463039356', '1463039356');
 INSERT INTO `auth_item` VALUES ('/admin/*', '2', null, null, null, '1463039355', '1463039355');
 INSERT INTO `auth_item` VALUES ('/admin/assignment/*', '2', null, null, null, '1463039351', '1463039351');
@@ -130,8 +135,10 @@ INSERT INTO `auth_item` VALUES ('/site/index', '2', null, null, null, '146303935
 INSERT INTO `auth_item` VALUES ('/site/login', '2', null, null, null, '1463039356', '1463039356');
 INSERT INTO `auth_item` VALUES ('/site/logout', '2', null, null, null, '1463039356', '1463039356');
 INSERT INTO `auth_item` VALUES ('/test/*', '2', null, null, null, '1463040085', '1463040085');
+INSERT INTO `auth_item` VALUES ('/test/create', '2', null, null, null, '1463042975', '1463042975');
 INSERT INTO `auth_item` VALUES ('/test/delete', '2', null, null, null, '1463040085', '1463040085');
 INSERT INTO `auth_item` VALUES ('/test/index', '2', null, null, null, '1463040084', '1463040084');
+INSERT INTO `auth_item` VALUES ('/test/update', '2', null, null, null, '1463042975', '1463042975');
 INSERT INTO `auth_item` VALUES ('/test/view', '2', null, null, null, '1463040085', '1463040085');
 INSERT INTO `auth_item` VALUES ('/user/*', '2', null, null, null, '1463040797', '1463040797');
 INSERT INTO `auth_item` VALUES ('/user/create', '2', null, null, null, '1463040797', '1463040797');
@@ -139,14 +146,21 @@ INSERT INTO `auth_item` VALUES ('/user/delete', '2', null, null, null, '14630407
 INSERT INTO `auth_item` VALUES ('/user/index', '2', null, null, null, '1463040797', '1463040797');
 INSERT INTO `auth_item` VALUES ('/user/update', '2', null, null, null, '1463040797', '1463040797');
 INSERT INTO `auth_item` VALUES ('/user/view', '2', null, null, null, '1463040797', '1463040797');
-INSERT INTO `auth_item` VALUES ('一点权限', '2', '一点权限', null, null, '1463060495', '1463060495');
 INSERT INTO `auth_item` VALUES ('乙级', '1', '乙级', null, null, '1463045104', '1463045104');
+INSERT INTO `auth_item` VALUES ('分配', '2', '分配', null, null, '1463110838', '1463110838');
+INSERT INTO `auth_item` VALUES ('分配管理者', '1', '分配管理者', null, null, '1463110889', '1463110889');
+INSERT INTO `auth_item` VALUES ('小兵', '1', '小兵', null, null, '1463105681', '1463105681');
+INSERT INTO `auth_item` VALUES ('权限', '2', '权限', null, null, '1463108882', '1463108882');
+INSERT INTO `auth_item` VALUES ('权限管理者', '1', '权限管理者', null, null, '1463108927', '1463108927');
 INSERT INTO `auth_item` VALUES ('测试管理', '2', '测试管理', null, null, '1463044965', '1463044965');
 INSERT INTO `auth_item` VALUES ('用户管理', '2', '用户管理', null, null, '1463040838', '1463040838');
 INSERT INTO `auth_item` VALUES ('甲级', '1', '甲级', null, null, '1463043067', '1463043067');
+INSERT INTO `auth_item` VALUES ('管理角色', '2', '管理角色', null, null, '1463109935', '1463109935');
 INSERT INTO `auth_item` VALUES ('给点权限', '2', '给点权限', null, null, '1463046735', '1463046735');
-INSERT INTO `auth_item` VALUES ('英超', '1', '英超', null, null, '1463060243', '1463060243');
 INSERT INTO `auth_item` VALUES ('角色1', '1', '角色1', null, null, '1463040922', '1463040922');
+INSERT INTO `auth_item` VALUES ('角色管理者', '1', '角色管理者', null, null, '1463109983', '1463109983');
+INSERT INTO `auth_item` VALUES ('路由管理', '2', '路由管理', null, null, '1463107217', '1463107217');
+INSERT INTO `auth_item` VALUES ('路由管理者', '1', '路由管理者', null, null, '1463107274', '1463107274');
 
 -- ----------------------------
 -- Table structure for `auth_item_child`
@@ -164,112 +178,227 @@ CREATE TABLE `auth_item_child` (
 -- ----------------------------
 -- Records of auth_item_child
 -- ----------------------------
+INSERT INTO `auth_item_child` VALUES ('小兵', ' 权限管理1');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/assignment/*');
+INSERT INTO `auth_item_child` VALUES ('分配', '/admin/assignment/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/assignment/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/assignment/assign');
+INSERT INTO `auth_item_child` VALUES ('分配', '/admin/assignment/assign');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/assignment/assign');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/assignment/index');
+INSERT INTO `auth_item_child` VALUES ('分配', '/admin/assignment/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/assignment/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/assignment/revoke');
+INSERT INTO `auth_item_child` VALUES ('分配', '/admin/assignment/revoke');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/assignment/revoke');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/assignment/view');
+INSERT INTO `auth_item_child` VALUES ('分配', '/admin/assignment/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/assignment/view');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/default/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/default/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/default/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/default/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/menu/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/menu/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/menu/create');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/menu/create');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/menu/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/menu/delete');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/menu/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/menu/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/menu/update');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/menu/update');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/menu/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/menu/view');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/permission/*');
+INSERT INTO `auth_item_child` VALUES ('权限', '/admin/permission/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/permission/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/permission/assign');
+INSERT INTO `auth_item_child` VALUES ('分配', '/admin/permission/assign');
+INSERT INTO `auth_item_child` VALUES ('权限', '/admin/permission/assign');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/permission/assign');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/permission/create');
+INSERT INTO `auth_item_child` VALUES ('权限', '/admin/permission/create');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/permission/create');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/permission/delete');
+INSERT INTO `auth_item_child` VALUES ('权限', '/admin/permission/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/permission/delete');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/permission/index');
+INSERT INTO `auth_item_child` VALUES ('权限', '/admin/permission/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/permission/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/permission/remove');
+INSERT INTO `auth_item_child` VALUES ('权限', '/admin/permission/remove');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/permission/remove');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/permission/update');
+INSERT INTO `auth_item_child` VALUES ('权限', '/admin/permission/update');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/permission/update');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/permission/view');
+INSERT INTO `auth_item_child` VALUES ('权限', '/admin/permission/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/permission/view');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/role/*');
+INSERT INTO `auth_item_child` VALUES ('管理角色', '/admin/role/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/role/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/role/assign');
+INSERT INTO `auth_item_child` VALUES ('管理角色', '/admin/role/assign');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/role/assign');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/role/create');
+INSERT INTO `auth_item_child` VALUES ('管理角色', '/admin/role/create');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/role/create');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/role/delete');
+INSERT INTO `auth_item_child` VALUES ('管理角色', '/admin/role/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/role/delete');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/role/index');
+INSERT INTO `auth_item_child` VALUES ('管理角色', '/admin/role/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/role/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/role/remove');
+INSERT INTO `auth_item_child` VALUES ('管理角色', '/admin/role/remove');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/role/remove');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/role/update');
+INSERT INTO `auth_item_child` VALUES ('管理角色', '/admin/role/update');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/role/update');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/role/view');
+INSERT INTO `auth_item_child` VALUES ('管理角色', '/admin/role/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/role/view');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/route/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/route/*');
+INSERT INTO `auth_item_child` VALUES ('路由管理', '/admin/route/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/route/assign');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/route/assign');
+INSERT INTO `auth_item_child` VALUES ('路由管理', '/admin/route/assign');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/route/create');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/route/create');
+INSERT INTO `auth_item_child` VALUES ('路由管理', '/admin/route/create');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/route/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/route/index');
+INSERT INTO `auth_item_child` VALUES ('路由管理', '/admin/route/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/route/refresh');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/route/refresh');
+INSERT INTO `auth_item_child` VALUES ('路由管理', '/admin/route/refresh');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/route/remove');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/route/remove');
+INSERT INTO `auth_item_child` VALUES ('路由管理', '/admin/route/remove');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/rule/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/rule/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/rule/create');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/rule/create');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/rule/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/rule/delete');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/rule/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/rule/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/rule/update');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/rule/update');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/rule/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/rule/view');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/activate');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/activate');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/change-password');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/change-password');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/delete');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/login');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/login');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/logout');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/logout');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/request-password-reset');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/request-password-reset');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/reset-password');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/reset-password');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/signup');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/signup');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/admin/user/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/admin/user/view');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/debug/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/debug/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/debug/default/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/debug/default/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/debug/default/db-explain');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/debug/default/db-explain');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/debug/default/download-mail');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/debug/default/download-mail');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/debug/default/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/debug/default/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/debug/default/toolbar');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/debug/default/toolbar');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/debug/default/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/debug/default/view');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/gii/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/gii/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/gii/default/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/gii/default/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/gii/default/action');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/gii/default/action');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/gii/default/diff');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/gii/default/diff');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/gii/default/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/gii/default/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/gii/default/preview');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/gii/default/preview');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/gii/default/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/gii/default/view');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/site/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/site/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/site/error');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/site/error');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/site/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/site/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/site/login');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/site/login');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/site/logout');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/site/logout');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/test/*');
 INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/test/create');
+INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/create');
+INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/create');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/test/delete');
 INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/delete');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/test/index');
 INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/test/update');
+INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/update');
+INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/update');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/test/view');
 INSERT INTO `auth_item_child` VALUES ('测试管理', '/test/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/view');
-INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/*');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/*');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/*');
-INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/create');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/create');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/create');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/create');
-INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/delete');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/delete');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/delete');
-INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/index');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/index');
+INSERT INTO `auth_item_child` VALUES ('乙级', '/user/index');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/index');
-INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/update');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/update');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/update');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/update');
-INSERT INTO `auth_item_child` VALUES ('一点权限', '/user/view');
+INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/view');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/view');
-INSERT INTO `auth_item_child` VALUES ('英超', '一点权限');
-INSERT INTO `auth_item_child` VALUES ('乙级', '测试管理');
+INSERT INTO `auth_item_child` VALUES ('分配管理者', '分配');
+INSERT INTO `auth_item_child` VALUES ('权限管理者', '权限');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '测试管理');
 INSERT INTO `auth_item_child` VALUES ('乙级', '用户管理');
 INSERT INTO `auth_item_child` VALUES ('甲级', '用户管理');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '用户管理');
 INSERT INTO `auth_item_child` VALUES ('角色1', '用户管理');
+INSERT INTO `auth_item_child` VALUES ('角色管理者', '管理角色');
+INSERT INTO `auth_item_child` VALUES ('路由管理者', '路由管理');
 
 -- ----------------------------
 -- Table structure for `auth_rule`
@@ -301,21 +430,24 @@ CREATE TABLE `menu` (
   PRIMARY KEY (`id`),
   KEY `parent` (`parent`),
   CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
 INSERT INTO `menu` VALUES ('1', '权限控制', null, '/user/index', '1', 0x64646464);
 INSERT INTO `menu` VALUES ('2', '权限管理', null, '/admin/assignment/index', '1', null);
-INSERT INTO `menu` VALUES ('3', '后台用户管理', '2', '/user/index', '2', 0x7B2269636F6E223A202266612066612D75736572222C202276697369626C65223A2066616C73657D);
-INSERT INTO `menu` VALUES ('4', '测试菜单', '2', '/admin/menu/index', '2', null);
+INSERT INTO `menu` VALUES ('3', '后台用户管理', null, '/user/index', '1', 0x7B2269636F6E223A202266612066612D75736572222C202276697369626C65223A2066616C73657D);
+INSERT INTO `menu` VALUES ('4', '权限设置', '2', '/admin/permission/index', '2', null);
 INSERT INTO `menu` VALUES ('5', '系统设置', null, '/user/index', '1', null);
-INSERT INTO `menu` VALUES ('6', '菜单设置', null, '/admin/menu/index', '1', null);
+INSERT INTO `menu` VALUES ('6', '设置菜单', '5', '/admin/menu/index', '1', null);
 INSERT INTO `menu` VALUES ('7', '用户管理', '2', '/user/index', '2', null);
-INSERT INTO `menu` VALUES ('8', '测试菜单2', null, null, '1', null);
-INSERT INTO `menu` VALUES ('9', '一级菜单a', null, '/admin/menu/index', '1', null);
-INSERT INTO `menu` VALUES ('10', '二级菜单a', '9', '/admin/menu/create', '2', null);
+INSERT INTO `menu` VALUES ('8', '测试菜单2', '2', null, '1', null);
+INSERT INTO `menu` VALUES ('9', '权限管理1', null, null, null, null);
+INSERT INTO `menu` VALUES ('10', '路由', '1', '/admin/route/index', '2', null);
+INSERT INTO `menu` VALUES ('11', '权限', '1', '/admin/permission/index', '2', null);
+INSERT INTO `menu` VALUES ('12', '角色', '1', '/admin/role/index', '2', null);
+INSERT INTO `menu` VALUES ('13', '分配', '1', '/admin/assignment/index', '2', null);
 
 -- ----------------------------
 -- Table structure for `test`
@@ -348,9 +480,10 @@ CREATE TABLE `user` (
   `created_at` int(11) NOT NULL COMMENT '创建时间',
   `updated_at` int(11) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'zxx123', 'hymt7fn7joEI8skhxWuEsR9USZfdXMtB', '$2y$13$bgU.26z9qHxXoK.P.t0NFO7zDikDtB3JX6IOIH4NWzhKduE98VKJu', null, 'zxx123@qq.com', '10', '10', '1463030662', '1463030662');
+INSERT INTO `user` VALUES ('2', 'abc', 'ZKLMNKTAA-Vf1pLqffu74w92j6-wsxQQ', '$2y$13$E1xQV9OvPTc1r.P3VbfGqOzPIue06GhE5DYg4cJA0mvrMsDlarZ6.', null, 'abc@qq.com', '10', '10', '1463108795', '1463108795');
