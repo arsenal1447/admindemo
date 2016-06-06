@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2016-05-13 15:28:35
+Date: 2016-06-06 11:11:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,6 +32,7 @@ CREATE TABLE `auth_assignment` (
 -- ----------------------------
 INSERT INTO `auth_assignment` VALUES ('乙级', '1', '1463045149');
 INSERT INTO `auth_assignment` VALUES ('分配管理者', '1', '1463110928');
+INSERT INTO `auth_assignment` VALUES ('大作家', '1', '1465182649');
 INSERT INTO `auth_assignment` VALUES ('小兵', '1', '1463105726');
 INSERT INTO `auth_assignment` VALUES ('权限管理者', '1', '1463109034');
 INSERT INTO `auth_assignment` VALUES ('甲级', '1', '1463043134');
@@ -149,6 +150,7 @@ INSERT INTO `auth_item` VALUES ('/user/view', '2', null, null, null, '1463040797
 INSERT INTO `auth_item` VALUES ('乙级', '1', '乙级', null, null, '1463045104', '1463045104');
 INSERT INTO `auth_item` VALUES ('分配', '2', '分配', null, null, '1463110838', '1463110838');
 INSERT INTO `auth_item` VALUES ('分配管理者', '1', '分配管理者', null, null, '1463110889', '1463110889');
+INSERT INTO `auth_item` VALUES ('大作家', '1', '我可以编辑,我有编辑的权限', null, null, '1465182595', '1465182595');
 INSERT INTO `auth_item` VALUES ('小兵', '1', '小兵', null, null, '1463105681', '1463105681');
 INSERT INTO `auth_item` VALUES ('权限', '2', '权限', null, null, '1463108882', '1463108882');
 INSERT INTO `auth_item` VALUES ('权限管理者', '1', '权限管理者', null, null, '1463108927', '1463108927');
@@ -157,6 +159,7 @@ INSERT INTO `auth_item` VALUES ('用户管理', '2', '用户管理', null, null,
 INSERT INTO `auth_item` VALUES ('甲级', '1', '甲级', null, null, '1463043067', '1463043067');
 INSERT INTO `auth_item` VALUES ('管理角色', '2', '管理角色', null, null, '1463109935', '1463109935');
 INSERT INTO `auth_item` VALUES ('给点权限', '2', '给点权限', null, null, '1463046735', '1463046735');
+INSERT INTO `auth_item` VALUES ('编辑权限', '2', '编辑权限', null, null, '1465182317', '1465182317');
 INSERT INTO `auth_item` VALUES ('角色1', '1', '角色1', null, null, '1463040922', '1463040922');
 INSERT INTO `auth_item` VALUES ('角色管理者', '1', '角色管理者', null, null, '1463109983', '1463109983');
 INSERT INTO `auth_item` VALUES ('路由管理', '2', '路由管理', null, null, '1463107217', '1463107217');
@@ -374,22 +377,28 @@ INSERT INTO `auth_item_child` VALUES ('给点权限', '/test/view');
 INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/*');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/*');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/*');
+INSERT INTO `auth_item_child` VALUES ('编辑权限', '/user/*');
 INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/create');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/create');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/create');
+INSERT INTO `auth_item_child` VALUES ('编辑权限', '/user/create');
 INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/delete');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/delete');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/delete');
+INSERT INTO `auth_item_child` VALUES ('编辑权限', '/user/delete');
 INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/index');
 INSERT INTO `auth_item_child` VALUES ('乙级', '/user/index');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/index');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/index');
+INSERT INTO `auth_item_child` VALUES ('编辑权限', '/user/index');
 INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/update');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/update');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/update');
+INSERT INTO `auth_item_child` VALUES ('编辑权限', '/user/update');
 INSERT INTO `auth_item_child` VALUES (' 权限管理1', '/user/view');
 INSERT INTO `auth_item_child` VALUES ('用户管理', '/user/view');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '/user/view');
+INSERT INTO `auth_item_child` VALUES ('编辑权限', '/user/view');
 INSERT INTO `auth_item_child` VALUES ('分配管理者', '分配');
 INSERT INTO `auth_item_child` VALUES ('权限管理者', '权限');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '测试管理');
@@ -398,6 +407,7 @@ INSERT INTO `auth_item_child` VALUES ('甲级', '用户管理');
 INSERT INTO `auth_item_child` VALUES ('给点权限', '用户管理');
 INSERT INTO `auth_item_child` VALUES ('角色1', '用户管理');
 INSERT INTO `auth_item_child` VALUES ('角色管理者', '管理角色');
+INSERT INTO `auth_item_child` VALUES ('大作家', '编辑权限');
 INSERT INTO `auth_item_child` VALUES ('路由管理者', '路由管理');
 
 -- ----------------------------
